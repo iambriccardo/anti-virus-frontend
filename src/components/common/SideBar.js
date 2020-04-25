@@ -8,11 +8,12 @@ import ListItemText from "@material-ui/core/ListItemText";
 import PeopleOutline from "@material-ui/icons/PeopleOutline";
 import EqualizerOutlinedIcon from "@material-ui/icons/EqualizerOutlined";
 import SettingsOutlined from "@material-ui/icons/SettingsOutlined";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import useStyles from "../Styles";
 
 export default function SideBar() {
   const styles = useStyles();
+
   const menuItems = [
     {
       label: "Overview",
@@ -38,14 +39,12 @@ export default function SideBar() {
       <Divider classes={styles.listItem} />
       <List>
         {menuItems.map((item) => (
-          <Link to={item.link} style={{ textDecoration: "none" }}>
-            <ListItem button key={item.label} className={styles.listItem}>
-              <ListItemIcon className={styles.menuIcon}>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.label} />
-            </ListItem>
-          </Link>
+          <MenuLink
+            activeOnlyWhenExact={true}
+            to={item.link}
+            label={item.label}
+            icon={item.icon}
+          ></MenuLink>
         ))}
       </List>
       <Divider />
@@ -60,5 +59,33 @@ export default function SideBar() {
         </Link>
       </List>
     </Drawer>
+  );
+}
+
+function MenuLink({ to, activeOnlyWhenExact, label, icon }) {
+  let match = useRouteMatch({
+    path: to,
+    exact: activeOnlyWhenExact,
+  });
+  const styles = useStyles();
+  return (
+    <Link to={to} style={{ textDecoration: "none" }}>
+      <ListItem
+        button
+        key={label}
+        className={match ? styles.activeListItem : styles.listItem}
+        
+      >
+        <ListItemIcon
+          className={match ? styles.activeMenuIcon : styles.menuIcon}
+        >
+          {icon}
+        </ListItemIcon>
+        <ListItemText
+          primary={label}
+          className={match ? styles.activeMenuLabel : ""}
+        />
+      </ListItem>
+    </Link>
   );
 }

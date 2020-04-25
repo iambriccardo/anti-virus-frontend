@@ -12,7 +12,7 @@ export default function TopBar(props) {
       classes={{
         paper: styles.topBarPaper,
       }}
-      elevation={1}
+      elevation={0}
       style={{background: "white", width: `calc(100% - ${240}px)`}}
     >
       <Toolbar>
