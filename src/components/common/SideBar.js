@@ -25,11 +25,11 @@ export default function SideBar() {
       anchor="left"
     >
       <div className={styles.toolbar} />
-      <Divider />
+      <Divider classes={styles.listItem} />
       <List>
         {["Overview", "Patients"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
+          <ListItem button key={text} className={styles.listItem}>
+            <ListItemIcon className={styles.menuIcon}>
               {index % 2 === 0 ? <EqualizerOutlinedIcon /> : <PeopleOutline />}
             </ListItemIcon>
             <ListItemText primary={text} />
@@ -38,8 +38,8 @@ export default function SideBar() {
       </List>
       <Divider />
       <List>
-          <ListItem button key="Settings">
-            <ListItemIcon>
+          <ListItem button key="Settings" className={styles.listItem}>
+            <ListItemIcon className={styles.menuIcon}>
                 <SettingsOutlined />
             </ListItemIcon>
             <ListItemText primary="Settings" />

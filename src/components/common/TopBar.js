@@ -10,12 +10,13 @@ export default function TopBar() {
     <AppBar
       className={styles.appBar}
       classes={{
-        paper: styles.drawerPaper,
+        paper: styles.topBarPaper,
       }}
+      style={{background: "white", width: `calc(100% - ${240}px)`}}
     >
       <Toolbar>
-        <Typography variant="h6" noWrap>
-          Permanent drawer
+        <Typography variant="h6" noWrap className={styles.topBarTitle}>
+          Title
         </Typography>
       </Toolbar>
     </AppBar>

@@ -15,9 +15,15 @@ export default makeStyles((theme) => ({
     drawer: {
       width: drawerWidth,
       flexShrink: 0,
+      background: "#363740",
     },
     drawerPaper: {
       width: drawerWidth,
+      background: "#363740",
+    },
+    topBarPaper: {
+        width: drawerWidth,
+        background: "white !important",
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
@@ -26,4 +32,13 @@ export default makeStyles((theme) => ({
       backgroundColor: theme.palette.background.default,
       padding: theme.spacing(3),
     },
+    listItem: {
+        color: "#A4A6B3",
+    },
+    menuIcon: {
+        color: "#A4A6B3",
+    },
+    topBarTitle: {
+        color: "black",
+    }
   }));
