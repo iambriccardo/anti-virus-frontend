@@ -12,7 +12,7 @@ import StatusCard from "../common/StatusCard";
 import Marker from "../images/marker.png";
 
 
-export default function Hospital() {
+export default function Overview() {
   const styles = useStyles();
 
   const boxes = [
@@ -36,24 +36,24 @@ export default function Hospital() {
 
   const positions = [
     {
-      
+
     }
   ]
 
   return (
-    <div className={styles.root}>
-      <TopBar title="Hospital" />
-      <CssBaseline />
-      <SideBar />
-      <main className={styles.content}>
-        <div className={styles.toolbar} />
-        <div className={styles.rowContainer}>
-          <Grid
-            container
-            className={styles.root}
-            direction="row"
-            spacing={3}
-            justify="space-between"
+      <div className={styles.root}>
+        <TopBar title="Overview"/>
+        <CssBaseline/>
+        <SideBar/>
+        <main className={styles.content}>
+          <div className={styles.toolbar}/>
+          <div className={styles.rowContainer}>
+            <Grid
+                container
+                className={styles.root}
+                direction="row"
+                spacing={3}
+                justify="space-between"
           >
             {boxes.map((box) => (
               <StatusCard
@@ -72,7 +72,7 @@ export default function Hospital() {
             defaultCenter={{ lat: 46.4936, lng: 11.3346 }}
             defaultZoom={14}
           >
-            <img lat={46.4936} lng={11.3346} src={Marker}></img>
+            <img lat={46.4936} lng={11.3346} src={Marker} alt={""}/>
           </GoogleMapReact>
         </div>
 

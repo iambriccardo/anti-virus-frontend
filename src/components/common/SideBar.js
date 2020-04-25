@@ -8,7 +8,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import PeopleOutline from "@material-ui/icons/PeopleOutline";
 import EqualizerOutlinedIcon from "@material-ui/icons/EqualizerOutlined";
 import SettingsOutlined from "@material-ui/icons/SettingsOutlined";
-import { Link, useRouteMatch } from "react-router-dom";
+import {Link, useRouteMatch} from "react-router-dom";
 import useStyles from "../Styles";
 
 export default function SideBar() {
@@ -17,13 +17,13 @@ export default function SideBar() {
   const menuItems = [
     {
       label: "Overview",
-      link: "/hospital",
-      icon: <EqualizerOutlinedIcon />,
+      link: "/overview",
+      icon: <EqualizerOutlinedIcon/>,
     },
     {
       label: "Patients",
-      link: "/doctor",
-      icon: <PeopleOutline />,
+      link: "/patientsList",
+      icon: <PeopleOutline/>,
     },
   ];
   return (
@@ -74,7 +74,7 @@ function MenuLink({ to, activeOnlyWhenExact, label, icon }) {
         button
         key={label}
         className={match ? styles.activeListItem : styles.listItem}
-        
+
       >
         <ListItemIcon
           className={match ? styles.activeMenuIcon : styles.menuIcon}
