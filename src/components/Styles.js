@@ -37,7 +37,7 @@ export default makeStyles((theme) => ({
 
     patientText: {
       height: 20,
-      padding: theme.spacing(2),
+      padding: theme.spacing(3),
       textAlign: 'left',
       color: theme.palette.text.primary,
     },
@@ -46,13 +46,6 @@ export default makeStyles((theme) => ({
       height: 490,
       padding: theme.spacing(2),
       textAlign: 'left',
-      color: theme.palette.text.secondary,
-    },
-
-    vertical: {
-      height: 27,
-      padding: theme.spacing(1),
-      textAlign: 'center',
       color: theme.palette.text.secondary,
     },
 
