@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import SideBar from '../common/SideBar';
@@ -12,7 +11,7 @@ export default function Doctor() {
 
   return (
     <div className={styles.root}>
-      <TopBar />
+      <TopBar title="Doctor" />
       <CssBaseline />
       <SideBar />
       <main className={styles.content}>

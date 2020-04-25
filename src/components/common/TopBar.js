@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-export default function TopBar() {
+export default function TopBar(props) {
   const styles = useStyles();
   return (
     <AppBar
@@ -12,11 +12,12 @@ export default function TopBar() {
       classes={{
         paper: styles.topBarPaper,
       }}
+      elevation={1}
       style={{background: "white", width: `calc(100% - ${240}px)`}}
     >
       <Toolbar>
         <Typography variant="h6" noWrap className={styles.topBarTitle}>
-          Title
+          {props.title}
         </Typography>
       </Toolbar>
     </AppBar>
