@@ -6,11 +6,14 @@ import { Card, CardContent, Typography } from "@material-ui/core";
 import useStyles from "../Styles";
 import Logo from "../images/logo.png";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
+
 
 function Login() {
   const styles = useStyles();
   return (
+    <main className={styles.content}>
     <Grid
       container
       spacing={0}
@@ -23,16 +26,17 @@ function Login() {
         <Card
           align="center"
           justify="center"
-          style={{ minWidth: "100%" }}
+          style={{ minWidth: "100%",}}
           className={styles.loginCard}
-          elevation={5}
+          elevation={0}
+          variant="outlined"
         >
           <CardContent>
             <Typography className={styles.loginTitle}>
               Welcome! Please, login
             </Typography>
 
-            <form autoComplete="off">
+            <form autoComplete="off" >
               <Grid container>
                 <Grid item xs={4}>
                   <img src={Logo} width="60%" />
@@ -43,6 +47,9 @@ function Login() {
                       id="username"
                       label="Username"
                       className={styles.loginField}
+                      InputProps={{
+                        className: styles.customFieldStyle
+                      }}
                     />
                   </div>
                   <div className={styles.loginContainer}>
@@ -55,15 +62,15 @@ function Login() {
                   </div>
                 </Grid>
               </Grid>
-              <Divider />
               <div>
-                <Button className={styles.loginField} style={{marginTop: 15}}>Login</Button>
+                <Button className={styles.loginField} style={{marginTop: 15, border: "1px solid rgba(0, 0, 0, 0.12)"}}>Login</Button>
               </div>
             </form>
           </CardContent>
         </Card>
       </Grid>
     </Grid>
+    </main>
   );
 }
 

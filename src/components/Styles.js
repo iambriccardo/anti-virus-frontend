@@ -75,6 +75,7 @@ export default makeStyles((theme) => ({
   },
   loginField: {
     width: "100%",
+    color:"#DDe2ff"
   },
   loginContainer: {
     marginBottom: 15
@@ -83,5 +84,4 @@ export default makeStyles((theme) => ({
     fontSize: 25,
     marinBottom: 25,
   },
-
 }));

@@ -13,7 +13,7 @@ export default function TopBar(props) {
         paper: styles.topBarPaper,
       }}
       elevation={0}
-      style={{background: "white", width: `calc(100% - ${240}px)`}}
+      style={{background: "transparent", width: `calc(100% - ${240}px)`}}
     >
       <Toolbar>
         <Typography variant="h6" noWrap className={styles.topBarTitle}>
