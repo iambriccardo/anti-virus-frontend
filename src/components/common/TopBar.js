@@ -15,7 +15,7 @@ export default function TopBar() {
     >
       <Toolbar>
         <Typography variant="h6" noWrap>
-          Permanent drawer
+          Patient
         </Typography>
       </Toolbar>
     </AppBar>
