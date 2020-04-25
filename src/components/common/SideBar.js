@@ -11,81 +11,85 @@ import SettingsOutlined from "@material-ui/icons/SettingsOutlined";
 import {Link, useRouteMatch} from "react-router-dom";
 import useStyles from "../Styles";
 
-export default function SideBar() {
-  const styles = useStyles();
+export default function SideBar(props) {
+    const styles = useStyles();
+    const {url, path} = useRouteMatch();
+    console.log();
+    const menuItems = [
+        {
+            label: "Overview",
+            link: `overview`,
+            icon: <EqualizerOutlinedIcon/>,
 
-  const menuItems = [
-    {
-      label: "Overview",
-      link: "/overview",
-      icon: <EqualizerOutlinedIcon/>,
-    },
-    {
-      label: "Patients",
-      link: "/patientsList",
-      icon: <PeopleOutline/>,
-    },
-  ];
-  return (
-    <Drawer
-      className={styles.drawer}
-      variant="permanent"
-      classes={{
-        paper: styles.drawerPaper,
-      }}
-      anchor="left"
-    >
-      <div className={styles.toolbar} />
-      <Divider classes={styles.listItem} />
-      <List>
-        {menuItems.map((item) => (
-          <MenuLink
-            activeOnlyWhenExact={true}
-            to={item.link}
-            label={item.label}
-            icon={item.icon}
-          ></MenuLink>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        <Link to={"/settings"} style={{ textDecoration: "none" }}>
-          <ListItem button key="Settings" className={styles.listItem}>
-            <ListItemIcon className={styles.menuIcon}>
-              <SettingsOutlined />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </Link>
-      </List>
-    </Drawer>
-  );
+        },
+        {
+            label: "Patients",
+            link: `patientsList`,
+            icon: <PeopleOutline/>,
+        },
+    ];
+    return (
+        <Drawer
+            className={styles.drawer}
+            variant="permanent"
+            classes={{
+                paper: styles.drawerPaper,
+            }}
+            anchor="left"
+        >
+            <div className={styles.toolbar}/>
+            <Divider classes={styles.listItem}/>
+            <List>
+                {menuItems.map((item) => (
+                    <MenuLink
+                        activeOnlyWhenExact={true}
+                        to={item.link}
+                        label={item.label}
+                        icon={item.icon}
+                        isActive={(props.path.pathname.slice(props.path.pathname.lastIndexOf("/") + 1) === item.link)}
+                    />
+                ))}
+            </List>
+            <Divider/>
+            <List>
+                <Link to={"settings"} style={{textDecoration: "none"}}>
+                    <ListItem button key="Settings" className={styles.listItem}>
+                        <ListItemIcon className={styles.menuIcon}>
+                            <SettingsOutlined/>
+                        </ListItemIcon>
+                        <ListItemText primary="Settings"/>
+                    </ListItem>
+                </Link>
+            </List>
+        </Drawer>
+    );
 }
 
-function MenuLink({ to, activeOnlyWhenExact, label, icon }) {
-  let match = useRouteMatch({
-    path: to,
-    exact: activeOnlyWhenExact,
-  });
-  const styles = useStyles();
-  return (
-    <Link to={to} style={{ textDecoration: "none" }}>
-      <ListItem
-        button
-        key={label}
-        className={match ? styles.activeListItem : styles.listItem}
+function MenuLink({to, activeOnlyWhenExact, label, icon, isActive}) {
+    let match = useRouteMatch({
+        path: to,
+        exact: activeOnlyWhenExact,
+    });
 
-      >
-        <ListItemIcon
-          className={match ? styles.activeMenuIcon : styles.menuIcon}
-        >
-          {icon}
-        </ListItemIcon>
-        <ListItemText
-          primary={label}
-          className={match ? styles.activeMenuLabel : ""}
-        />
-      </ListItem>
-    </Link>
-  );
+    const styles = useStyles();
+
+    return (
+        <Link to={to} style={{textDecoration: "none", color: "unset"}}>
+            <ListItem
+                button
+                key={label}
+                className={isActive ? styles.activeListItem : styles.listItem}
+            >
+                <ListItemIcon
+                    className={isActive ? styles.activeMenuIcon : styles.menuIcon}
+                >
+                    {icon}
+                </ListItemIcon>
+                <ListItemText
+                    primary={label}
+                    className={isActive ? styles.activeMenuLabel : ""}
+                />
+            </ListItem>
+        </Link>
+    );
 }

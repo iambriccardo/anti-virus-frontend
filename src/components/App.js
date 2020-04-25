@@ -1,8 +1,7 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import PatientsList from './patientsList/PatientsList';
-import Overview from './overview/Overview';
 import Login from './login/Login';
+import Home from './home/Home';
 
 function App() {
     return (
@@ -10,11 +9,8 @@ function App() {
             <Route exact path="/">
                 <Login/>
             </Route>
-            <Route path="/patientsList">
-                <PatientsList/>
-            </Route>
-            <Route path="/overview">
-                <Overview/>
+            <Route path="">
+                <Home/>
             </Route>
         </Switch>
     );

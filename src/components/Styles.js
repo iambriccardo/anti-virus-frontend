@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 
 const drawerWidth = 240;
 
@@ -56,10 +56,6 @@ export default makeStyles((theme) => ({
   mapContainer: {
     height: "50vh",
     width: "100%",
-  },
-  activeDrawerOption: {
-    color: "red",
-    background: "green",
   },
   activeMenuLabel: {
       color:"#DDE2FF",
