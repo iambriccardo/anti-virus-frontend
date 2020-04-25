@@ -72,5 +72,16 @@ export default makeStyles((theme) => ({
       "&:hover": {
           backgroundColor: "#9FA2B41A",
       },
-  }
+  },
+  loginField: {
+    width: "100%",
+  },
+  loginContainer: {
+    marginBottom: 15
+  },
+  loginTitle: {
+    fontSize: 25,
+    marinBottom: 25,
+  },
+
 }));
