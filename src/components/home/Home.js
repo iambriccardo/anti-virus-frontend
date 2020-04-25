@@ -32,6 +32,10 @@ export default function Home() {
                     </Route>
                     <Redirect to="/hospital/overview"/>
                 </Route>
+
+                <Route path="/">
+                    <Redirect to={"../"}/>
+                </Route>
             </Switch>
         </div>
     )
