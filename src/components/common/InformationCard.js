@@ -10,7 +10,7 @@ export default function InformationCard(props) {
     <Grid container direction="row" justify="flex-start" alignItems="center" item xs={3} spacing={2}>
       <Grid item xs={4}>
         <Avatar
-          src="https://webservices.scientificnet.org/rest/uisdata/api/v1/people/38064/image?w=260&amp;h=260"
+          src={props.src}
           style={{width:100, height:100}}
         />
       </Grid>

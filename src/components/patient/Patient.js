@@ -4,32 +4,40 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import GoogleMapReact from 'google-map-react';
 import React from 'react';
+import {useQuery} from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import InformationCard from '../common/InformationCard';
 import StatusCard from '../common/StatusCard';
 import TopBar from '../common/TopBar';
 import useStyles from '../Styles';
-import {
-    useParams
-} from "react-router-dom";
+import Marker from "../images/marker.png";
+import {useParams} from "react-router-dom";
 import {ArrowBack} from "@material-ui/icons";
 
+const GET_PATIENT_BY_ID = gql`
+    query singlePatient($patientId: Int!) {
+        singlePatient(patientId: $patientId) {
+            fiscalCode
+            name
+            surname
+            dateOfBirth
+            familyMembers
+            homeLat
+            homeLon
+            imageUrl
+        }
+    }
+`;
+const GET_TEMPERATURE = gql`
+  query symptomsOfPatient($patientID: Int!) {
+    symptomsOfPatient(patientId:1) {
+        bodyTemperature
+    }
+}
+`;
+
 export default function Patient() {
-    const boxes = [
-        {
-            title: 'Estimated Risk',
-            value: 'Low',
-        },
-
-        {
-            title: 'Fever',
-            value: 39.2,
-        },
-
-        {
-            title: 'Family Members',
-            value: 4,
-        },
-    ];
+   
 
     const infos = [
         {
@@ -43,6 +51,24 @@ export default function Patient() {
     const classes = useStyles();
 
     const {id} = useParams();
+    const idInt= parseInt(id);
+    console.log(idInt)
+    const{loading,error,data}=useQuery(GET_PATIENT_BY_ID, {
+        variables: {
+           patientId: idInt 
+        },
+      });
+      
+    const{loadingTemp,errorTemp,dataTemp}=useQuery(GET_TEMPERATURE, {
+        variables: {
+           patientId: idInt 
+        },
+    });
+
+    if (loading) return 'Loading...';
+    if (error) return `Error! ${error.message}`;
+    if (loadingTemp) return 'Loading...';
+    if (errorTemp) return `Error! ${error.message}`;
 
     return (
         <div className={classes.root}>
@@ -53,13 +79,13 @@ export default function Patient() {
                 <div>
                     <Grid container spacing={3}>
                         {infos.map((box) => (
-                            <InformationCard name={box.name} birthDate={box.birthDate} gender={box.gender}
-                                             code={box.code}/>
+                            <InformationCard name={data.singlePatient.name+" "+data.singlePatient.surname} birthDate={data.singlePatient.dateOfBirth}
+                             gender={" "} code={data.singlePatient.fiscalCode} src={data.singlePatient.imageUrl}/>
                         ))}
 
-                        {boxes.map((box) => (
-                            <StatusCard value={box.value} title={box.title} xs={3}/>
-                        ))}
+                        <StatusCard value={"Low"} title={"Estimated Risk"} xs={3}/>
+                        <StatusCard value={"37"} title={"Fever"} xs={3}/>
+                        <StatusCard value={data.singlePatient.familyMembers} title={"Family Members"} xs={3}/>
 
                         <Grid item container xs={6} spacing={2}>
                             <Grid item xs={12}>
@@ -85,6 +111,7 @@ export default function Patient() {
                                         defaultCenter={{lat: 46.4936, lng: 11.3346}}
                                         defaultZoom={14}
                                     />
+                                    <img lat={data.singlePatient.homeLat} lng={data.singlePatient.homeLon} src={Marker} alt={''} />
                                 </div>
                             </Grid>
                         </Grid>
