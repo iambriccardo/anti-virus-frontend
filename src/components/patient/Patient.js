@@ -101,6 +101,7 @@ export default function Patient() {
                     markers={[
                       { id: data.singlePatient.id, lat: data.singlePatient.homeLat, lon: data.singlePatient.homeLon },
                     ]}
+                    style={{height:"100%"}}
                   />
                 </div>
               </Grid>

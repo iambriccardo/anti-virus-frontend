@@ -32,6 +32,8 @@ const GET_HOSPITAL_BY_NAME = gql`
   }
 `;
 
+
+
 function Login() {
   const styles = useStyles();
 
@@ -93,6 +95,7 @@ function Login() {
                         }}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required={true}
                       />
                     </div>
                     <div className={styles.loginContainer}>
@@ -103,6 +106,7 @@ function Login() {
                         className={styles.loginField}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+
                       />
                     </div>
                     <div className={styles.loginContainer}>
@@ -126,19 +130,19 @@ function Login() {
                     className={styles.loginField}
                     style={{ marginTop: 15, border: '1px solid rgba(0, 0, 0, 0.12)' }}
                     onClick={() => {
-                      if (loginType === 'doctor') {
-                        getDoctorByName({
-                          variables: {
-                            doctorName: name,
-                          },
-                        });
-                      } else if (loginType === 'hospital') {
-                        getHospitalByName({
-                          variables: {
-                            hospitalName: name,
-                          },
-                        });
-                      }
+                        if (loginType === 'doctor') {
+                            getDoctorByName({
+                                variables: {
+                                    doctorName: name,
+                                },
+                            });
+                        } else if (loginType === 'hospital') {
+                            getHospitalByName({
+                                variables: {
+                                    hospitalName: name,
+                                },
+                            });
+                        }
                     }}
                   >
                     Login
