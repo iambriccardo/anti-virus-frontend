@@ -10,7 +10,7 @@ import InformationCard from '../common/InformationCard';
 import StatusCard from '../common/StatusCard';
 import TopBar from '../common/TopBar';
 import useStyles from '../Styles';
-import Marker from "../images/marker.png";
+import Circle from "../images/circle.png";
 import {useParams} from "react-router-dom";
 import {ArrowBack} from "@material-ui/icons";
 
@@ -108,10 +108,10 @@ export default function Patient() {
                                         bootstrapURLKeys={{
                                             key: 'AIzaSyCTPeJ6h7Xj84VCrmyJhlmMfIrZIRcmwyc',
                                         }}
-                                        defaultCenter={{lat: 46.4936, lng: 11.3346}}
-                                        defaultZoom={14}
-                                    />
-                                    <img lat={data.singlePatient.homeLat} lng={data.singlePatient.homeLon} src={Marker} alt={''} />
+                                        defaultCenter={{lat: data.singlePatient.homeLat, lng: data.singlePatient.homeLon}}
+                                        defaultZoom={12}>
+                                    <img lat={data.singlePatient.homeLat} lng={data.singlePatient.homeLon} style={{width: 15, height:15}} src={Circle} alt={''} />
+                                    </GoogleMapReact>
                                 </div>
                             </Grid>
                         </Grid>

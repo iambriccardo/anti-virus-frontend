@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import {Redirect, useParams, useHistory} from "react-router";
 import StatusCard from "../common/StatusCard";
 import TopBar from "../common/TopBar";
-import Marker from "../images/marker.png";
+import Circle from "../images/circle.png";
 import useStyles from "../Styles";
 import {useQuery} from "@apollo/react-hooks";
 import {useSelector} from 'react-redux';
@@ -93,7 +93,7 @@ export default function Overview(props) {
                         defaultZoom={0}
                     >
                         {data.patientsOfDoctor.map((patient) => (
-                            <img lat={patient.homeLat} lng={patient.homeLat} src={Marker} alt={''} onClick={(event => {
+                            <img lat={patient.homeLat} lng={patient.homeLon} src={Circle} alt={''} style={{height:15, width:15}} onClick={(event => {
                                 history.push("patient/"+patient.id)
                             })
                             } />
