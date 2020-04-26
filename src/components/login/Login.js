@@ -8,11 +8,13 @@ import useStyles from '../Styles';
 import { DOCTOR_ROLE_TYPE } from '../../constants/constants';
 import { setActiveRole } from '../../redux/actions/index';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 
 function Login() {
   const styles = useStyles();
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   return (
     <main className={styles.content}>
@@ -61,7 +63,12 @@ function Login() {
                   <Button
                     className={styles.loginField}
                     style={{ marginTop: 15, border: '1px solid rgba(0, 0, 0, 0.12)' }}
-                    onClick={() => dispatch(setActiveRole(1, DOCTOR_ROLE_TYPE))}
+                    onClick={() => {
+                      // Implement real backend call as needed
+                      dispatch(setActiveRole(1, DOCTOR_ROLE_TYPE))
+                      history.push(`${DOCTOR_ROLE_TYPE}/overview`)
+                    }
+                    }
                   >
                     Login
                   </Button>

@@ -1,21 +1,27 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Login from './login/Login';
 import Home from './home/Home';
-
-const activeRole = 'doctor';
+import { useSelector } from 'react-redux';
 
 function App() {
-    return (
-        <Switch>
-            <Route exact path="/login">
-                <Login/>
-            </Route>
-            <Route exact path={`/${activeRole}`}>
-                <Home/>
-            </Route>
-        </Switch>
-    );
+  const activeRole = useSelector((state) => state.activeRole);
+
+  return (
+    <Switch>
+      <Route exact path="/login">
+        <Login />
+      </Route>
+      {activeRole !== undefined && (
+        <Route path={`/${activeRole.type}`}>
+          <Home />
+        </Route>
+      )}
+      <Route path="*">
+          <Redirect to="/login" />
+      </Route>
+    </Switch>
+  );
 }
 
 export default App;

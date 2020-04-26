@@ -9,7 +9,7 @@ export default function PatientsList(props) {
 
     return (
         <>
-            <TopBar title={"Patients List " + props.userType}/>
+            <TopBar title={"Patients List " + props.activeRole.type}/>
             <main className={styles.content}>
                 <div className={styles.toolbar}/>
                 <Typography paragraph>

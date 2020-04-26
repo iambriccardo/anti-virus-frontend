@@ -8,26 +8,26 @@ import EqualizerOutlinedIcon from '@material-ui/icons/EqualizerOutlined';
 import PeopleOutline from '@material-ui/icons/PeopleOutline';
 import SettingsOutlined from '@material-ui/icons/SettingsOutlined';
 import React from 'react';
-import { Link, useRouteMatch, useHistory } from 'react-router-dom';
+import { Link, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 import useStyles from '../Styles';
 
 export default function SideBar(props) {  
   const styles = useStyles();
 
-  const match = useRouteMatch();
-
   const menuItems = [
     {
       label: 'Overview',
-      link: `${match.path}/overview`,
+      link: `${props.path}/overview`,
       icon: <EqualizerOutlinedIcon />,
     },
     {
       label: 'Patients',
-      link: `${match.path}/patientsList`,
+      link: `${props.path}/patientsList`,
       icon: <PeopleOutline />,
     },
   ];
+
+  const {pathname} = useLocation();
 
   return (
     <Drawer
@@ -47,7 +47,7 @@ export default function SideBar(props) {
             to={item.link}
             label={item.label}
             icon={item.icon}
-            isActive={match.path === item.link}
+            isActive={pathname === item.link}
           />
         ))}
       </List>

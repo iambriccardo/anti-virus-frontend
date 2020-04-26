@@ -9,6 +9,15 @@ import GoogleMapReact from "google-map-react";
 import StatusCard from "../common/StatusCard";
 import Marker from "../images/marker.png";
 import {useParams} from "react-router";
+import { useSelector } from 'react-redux';
+
+function DoctorOverview() {
+
+}
+
+function HospitalOverview() {
+
+}
 
 
 export default function Overview(props) {
@@ -40,7 +49,7 @@ export default function Overview(props) {
 
     return (
         <>
-            <TopBar title={"Overview " + props.userType}/>
+            <TopBar title={"Overview " + props.activeRole.type}/>
             <main className={styles.content}>
                 <div className={styles.toolbar}/>
                 <div className={styles.rowContainer}>
