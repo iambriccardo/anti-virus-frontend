@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom';
 import InformationCard from '../common/InformationCard';
 import StatusCard from '../common/StatusCard';
 import TopBar from '../common/TopBar';
-import Marker from '../images/marker.png';
 import useStyles from '../Styles';
 import {Map} from "../common/Map";
 
