@@ -10,9 +10,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import React from 'react';
 import useStyles from '../Styles';
+import {useHistory} from 'react-router-dom';
 
-export default function PatientsTable() {
+export default function PatientsTable(props) {
   const classes = useStyles();
+
+  const history = useHistory();
+  console.log(history);
 
   const rows = [{
     Name: "Ciao",
@@ -31,7 +35,7 @@ export default function PatientsTable() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.Name}>
+            <TableRow key={row.Name} onClick={() => history.push(`${props.basePath}/patient/${1}`)}>
               <TableCell component="th" scope="row">
                 <Grid container direction="row" justify="flex-start" alignItems="center" spacing={2}>
                   <Grid item>

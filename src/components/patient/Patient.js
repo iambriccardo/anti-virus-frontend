@@ -5,9 +5,12 @@ import Typography from '@material-ui/core/Typography';
 import GoogleMapReact from 'google-map-react';
 import React from 'react';
 import InformationCard from '../common/InformationCard';
-import StatusCard from '../common/statusCard';
+import StatusCard from '../common/StatusCard';
 import TopBar from '../common/TopBar';
 import useStyles from '../Styles';
+import {
+  useParams
+} from "react-router-dom";
 
 export default function Patient() {
   const boxes = [
@@ -37,6 +40,8 @@ export default function Patient() {
   ];
 
   const classes = useStyles();
+  
+  const {id} = useParams();
 
   return (
     <div className={classes.root}>

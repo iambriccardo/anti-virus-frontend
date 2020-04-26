@@ -6,6 +6,7 @@ import SideBar from '../common/SideBar';
 import Overview from '../overview/Overview';
 import PatientsList from '../patientsList/PatientsList';
 import useStyles from '../Styles';
+import Patient from '../patient/Patient';
 
 export default function Home() {
   const styles = useStyles();
@@ -13,6 +14,7 @@ export default function Home() {
   const activeRole = useSelector((state) => state.activeRole);
 
   const { path } = useRouteMatch();
+  console.log(path);
 
   return (
     <div className={styles.root}>
@@ -22,7 +24,10 @@ export default function Home() {
           <Overview activeRole={activeRole} />
         </Route>
         <Route path={`${path}/patientsList`}>
-          <PatientsList activeRole={activeRole} />
+          <PatientsList basePath={path} activeRole={activeRole} />
+        </Route>
+        <Route path={`${path}/patient/:id`}>
+            <Patient />
         </Route>
       </Switch>
     </div>
