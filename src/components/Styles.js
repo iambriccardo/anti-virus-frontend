@@ -3,17 +3,35 @@ import { makeStyles } from '@material-ui/core/styles';
 const drawerWidth = 240;
 
 export default makeStyles((theme) => ({
+  // Main Classes:
   root: {
     display: 'flex',
   },
   mainContainer: {
     backgroundColor: '#F7F8FC',
   },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    backgroundColor: '#000000',
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3),
   },
+  rowContainer: {
+    marginBottom: 20,
+  },
+  topBarTitle: {
+    color: 'black',
+  },
+  topBarTitleIcon: {
+    color: 'black',
+    lineHeight: 1
+  },
+  mapContainer: {
+    height: '50vh',
+    width: '100%',
+  },
+
+  // Side Bar Navigator:
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -23,38 +41,11 @@ export default makeStyles((theme) => ({
     width: drawerWidth,
     background: '#363740',
   },
-  topBarPaper: {
-    width: drawerWidth,
-    background: 'white !important',
-  },
-  topBarCard: {
-    height: 110,
-  },
-  rowContainer: {
-    marginBottom: 20,
-  },
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
-  },
-  topBarCardValue: {
-    fontSize: 40,
-    fontWeight: 'normal',
-  },
-  listItem: {
-    color: '#A4A6B3',
-  },
   menuIcon: {
     color: '#A4A6B3',
   },
-  topBarTitle: {
-    color: 'black',
-  },
-  mapContainer: {
-    height: '50vh',
-    width: '100%',
+  listItem: {
+    color: '#A4A6B3',
   },
   activeMenuLabel: {
     color: '#DDE2FF',
@@ -68,6 +59,26 @@ export default makeStyles((theme) => ({
       backgroundColor: '#9FA2B41A',
     },
   },
+
+  // Status Card:
+  statusCard: {
+    height: 110,
+  },
+  statusCardValue: {
+    fontSize: 40,
+    fontWeight: 'normal',
+  },
+
+  informationCardName: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom: 5
+  },
+  informationCardDetail:{
+    fontSize: 15
+  },
+
+  // Login:
   loginField: {
     width: '100%',
     color: '#DDe2ff',
@@ -79,6 +90,10 @@ export default makeStyles((theme) => ({
     fontSize: 25,
     marinBottom: 25,
   },
+
+
+
+  // Patient:
   patientGrid: {
     height: 110,
     padding: theme.spacing(2),
@@ -92,7 +107,7 @@ export default makeStyles((theme) => ({
     color: theme.palette.text.primary,
   },
   graphAndMap: {
-    height: 490,
+    height: 300,
     padding: theme.spacing(2),
     textAlign: 'left',
     color: theme.palette.text.secondary,
