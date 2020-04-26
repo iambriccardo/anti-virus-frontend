@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import Login from './login/Login';
-import Home from './home/Home';
 import { useSelector } from 'react-redux';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import Home from './home/Home';
+import Login from './login/Login';
 
 function App() {
   const activeRole = useSelector((state) => state.activeRole);
@@ -18,7 +18,7 @@ function App() {
         </Route>
       )}
       <Route path="*">
-          <Redirect to="/login" />
+        <Redirect to="/login" />
       </Route>
     </Switch>
   );

@@ -49,7 +49,7 @@ function Login() {
     onCompleted: (data) => {
       dispatch(setActiveRole(data.singleHospital.id, HOSPITAL_ROLE_TYPE));
       history.push(`/${HOSPITAL_ROLE_TYPE}/overview`);
-    }
+    },
   });
 
   return (

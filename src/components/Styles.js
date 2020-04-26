@@ -1,32 +1,31 @@
-import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
 export default makeStyles((theme) => ({
   root: {
-    display: "flex",
+    display: 'flex',
   },
   mainContainer: {
-    backgroundColor: "#F7F8FC",
+    backgroundColor: '#F7F8FC',
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    backgroundColor: "#000000",
+    backgroundColor: '#000000',
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    background: "#363740",
+    background: '#363740',
   },
   drawerPaper: {
     width: drawerWidth,
-    background: "#363740",
+    background: '#363740',
   },
   topBarPaper: {
     width: drawerWidth,
-    background: "white !important",
+    background: 'white !important',
   },
   topBarCard: {
     height: 110,
@@ -42,42 +41,60 @@ export default makeStyles((theme) => ({
   },
   topBarCardValue: {
     fontSize: 40,
-    fontWeight: "normal",
+    fontWeight: 'normal',
   },
   listItem: {
-    color: "#A4A6B3",
+    color: '#A4A6B3',
   },
   menuIcon: {
-    color: "#A4A6B3",
+    color: '#A4A6B3',
   },
   topBarTitle: {
-    color: "black",
+    color: 'black',
   },
   mapContainer: {
-    height: "50vh",
-    width: "100%",
+    height: '50vh',
+    width: '100%',
   },
   activeMenuLabel: {
-      color:"#DDE2FF",
+    color: '#DDE2FF',
   },
   activeMenuIcon: {
-      color:"#DDE2FF",
+    color: '#DDE2FF',
   },
   activeListItem: {
-      backgroundColor: "#9FA2B41A",
-      "&:hover": {
-          backgroundColor: "#9FA2B41A",
-      },
+    backgroundColor: '#9FA2B41A',
+    '&:hover': {
+      backgroundColor: '#9FA2B41A',
+    },
   },
   loginField: {
-    width: "100%",
-    color:"#DDe2ff"
+    width: '100%',
+    color: '#DDe2ff',
   },
   loginContainer: {
-    marginBottom: 15
+    marginBottom: 15,
   },
   loginTitle: {
     fontSize: 25,
     marinBottom: 25,
+  },
+  patientGrid: {
+    height: 110,
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+  patientText: {
+    height: 20,
+    padding: theme.spacing(3),
+    textAlign: 'left',
+    color: theme.palette.text.primary,
+  },
+  graphAndMap: {
+    height: 490,
+    padding: theme.spacing(2),
+    textAlign: 'left',
+    color: theme.palette.text.secondary,
   },
 }));

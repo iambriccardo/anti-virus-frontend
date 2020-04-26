@@ -1,8 +1,8 @@
-import React from "react";
-import useStyles from "../Styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import useStyles from '../Styles';
 
 export default function TopBar(props) {
   const styles = useStyles();
@@ -13,7 +13,7 @@ export default function TopBar(props) {
         paper: styles.topBarPaper,
       }}
       elevation={0}
-      style={{background: "transparent", width: `calc(100% - ${240}px)`}}
+      style={{ background: 'transparent', width: `calc(100% - ${240}px)` }}
     >
       <Toolbar>
         <Typography variant="h6" noWrap className={styles.topBarTitle}>

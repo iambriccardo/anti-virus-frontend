@@ -1,11 +1,11 @@
 import React from 'react';
-import { Redirect, Switch, useLocation, useRouteMatch } from 'react-router';
-import { Route } from 'react-router-dom';
-import PatientsList from '../patientsList/PatientsList';
-import Overview from '../overview/Overview';
-import SideBar from '../common/SideBar';
-import useStyles from '../Styles';
 import { useSelector } from 'react-redux';
+import { Switch, useRouteMatch } from 'react-router';
+import { Route } from 'react-router-dom';
+import SideBar from '../common/SideBar';
+import Overview from '../overview/Overview';
+import PatientsList from '../patientsList/PatientsList';
+import useStyles from '../Styles';
 
 export default function Home() {
   const styles = useStyles();
@@ -18,12 +18,12 @@ export default function Home() {
     <div className={styles.root}>
       <SideBar path={path} />
       <Switch>
-          <Route path={`${path}/overview`}>
-            <Overview activeRole={activeRole} />
-          </Route>
-          <Route path={`${path}/patientsList`}>
-            <PatientsList activeRole={activeRole} />
-          </Route>
+        <Route path={`${path}/overview`}>
+          <Overview activeRole={activeRole} />
+        </Route>
+        <Route path={`${path}/patientsList`}>
+          <PatientsList activeRole={activeRole} />
+        </Route>
       </Switch>
     </div>
   );

@@ -8,10 +8,10 @@ import EqualizerOutlinedIcon from '@material-ui/icons/EqualizerOutlined';
 import PeopleOutline from '@material-ui/icons/PeopleOutline';
 import SettingsOutlined from '@material-ui/icons/SettingsOutlined';
 import React from 'react';
-import { Link, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import useStyles from '../Styles';
 
-export default function SideBar(props) {  
+export default function SideBar(props) {
   const styles = useStyles();
 
   const menuItems = [
@@ -27,7 +27,7 @@ export default function SideBar(props) {
     },
   ];
 
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <Drawer
@@ -66,14 +66,19 @@ export default function SideBar(props) {
   );
 }
 
-function MenuLink({ to, activeOnlyWhenExact, label, icon, isActive }) { 
+function MenuLink({ to, activeOnlyWhenExact, label, icon, isActive }) {
   const styles = useStyles();
 
-  const history = useHistory();  
+  const history = useHistory();
 
   return (
     <Link to={to} style={{ textDecoration: 'none', color: 'unset' }}>
-      <ListItem button key={label} className={isActive ? styles.activeListItem : styles.listItem} onClick={() => history.push(to)}>
+      <ListItem
+        button
+        key={label}
+        className={isActive ? styles.activeListItem : styles.listItem}
+        onClick={() => history.push(to)}
+      >
         <ListItemIcon className={isActive ? styles.activeMenuIcon : styles.menuIcon}>{icon}</ListItemIcon>
         <ListItemText primary={label} className={isActive ? styles.activeMenuLabel : ''} />
       </ListItem>
