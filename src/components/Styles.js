@@ -68,6 +68,27 @@ export default makeStyles((theme) => ({
     fontSize: 40,
     fontWeight: 'normal',
   },
+  statusCardValueWhite:{
+    fontSize: 40,
+    fontWeight: 'normal',
+    color: 'white',
+  },
+  statusCardLow:{
+    height: 110,
+    background: "#29CC97",
+  },
+  statusCardMedium:{
+    height: 110,
+    background: "#FF8E25",
+  },
+  statusCardHigh:{
+    height: 110,
+    background: "#F12B2C",
+  },
+  statusCardCritical:{
+    height: 110,
+    background: "#6d0202",
+  },
 
   informationCardName: {
     fontWeight: "bold",

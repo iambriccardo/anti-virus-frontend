@@ -25,6 +25,7 @@ const GET_PATIENT_BY_ID = gql`
       homeLat
       homeLon
       imageUrl
+      riskScore
     }
     symptomsOfPatient(patientId: $patientId) {
       bodyTemperature
@@ -68,7 +69,7 @@ export default function Patient() {
               src={data.singlePatient.imageUrl}
             />
 
-            <StatusCard value={'Low'} title={'Estimated Risk'} xs={3} />
+            <StatusCard risk={data.singlePatient.riskScore} value={data.singlePatient.riskScore !== null ? data.singlePatient.riskScore : "nAn"} title={'Estimated Risk'} xs={3} />
             <StatusCard value={temperature} title={'Fever'} xs={3} />
             <StatusCard value={data.singlePatient.familyMembers} title={'Family Members'} xs={3} />
 

@@ -19,6 +19,7 @@ const GET_PATIENTS_OF_DOCTOR = gql`
       homeLat
       homeLon
       imageUrl
+      riskScore
     }
   }
 `;
@@ -35,6 +36,7 @@ const GET_PATIENTS_OF_HOSPITAL = gql`
       homeLat
       homeLon
       imageUrl
+      riskScore
     }
   }
 `;
