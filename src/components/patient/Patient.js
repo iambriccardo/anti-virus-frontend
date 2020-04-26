@@ -42,12 +42,6 @@ const GET_PATIENT_BY_ID = gql`
   }
 `;
 
-function unixToDate(unix_timestamp) {
-    let date = new Date(unix_timestamp);
-
-    return date.toLocaleDateString();
-}
-
 export default function Patient() {
     const classes = useStyles();
 
@@ -108,7 +102,7 @@ export default function Patient() {
                     <Grid container spacing={3}>
                         <InformationCard
                             name={data.singlePatient.name + ' ' + data.singlePatient.surname}
-                            birthDate={data.singlePatient.dateOfBirth}
+                            birthDate={(new Date(parseFloat(data.singlePatient.dateOfBirth))).toLocaleDateString()}
                             gender={' '}
                             code={data.singlePatient.fiscalCode}
                             src={data.singlePatient.imageUrl}
