@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { ArrowBack } from '@material-ui/icons';
-import GoogleMapReact from 'google-map-react';
 import gql from 'graphql-tag';
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -13,9 +12,10 @@ import StatusCard from '../common/StatusCard';
 import TopBar from '../common/TopBar';
 import Marker from '../images/marker.png';
 import useStyles from '../Styles';
+import {Map} from "../common/Map";
 
 const GET_PATIENT_BY_ID = gql`
-  query singlePatient($patientId: Int!) {
+  query ($patientId: Int!) {
     singlePatient(patientId: $patientId) {
       fiscalCode
       name
@@ -26,15 +26,12 @@ const GET_PATIENT_BY_ID = gql`
       homeLon
       imageUrl
     }
-  }
-`;
-const GET_TEMPERATURE = gql`
-  query symptomsOfPatient($patientID: Int!) {
-    symptomsOfPatient(patientId: 1) {
+    symptomsOfPatient(patientId: $patientId) {
       bodyTemperature
     }
   }
 `;
+
 
 export default function Patient() {
   const classes = useStyles();
@@ -47,16 +44,13 @@ export default function Patient() {
     },
   });
 
-  const { loadingTemp, errorTemp } = useQuery(GET_TEMPERATURE, {
-    variables: {
-      patientId: parseInt(id),
-    },
-  });
-
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
-  if (loadingTemp) return 'Loading...';
-  if (errorTemp) return `Error! ${error.message}`;
+
+  let temperature = "nAn";
+  if(data.symptomsOfPatient[0] !== undefined){
+    temperature = data.symptomsOfPatient[0].bodyTemperature;
+  }
 
   return (
     <div className={classes.root}>
@@ -75,7 +69,7 @@ export default function Patient() {
             />
 
             <StatusCard value={'Low'} title={'Estimated Risk'} xs={3} />
-            <StatusCard value={'37'} title={'Fever'} xs={3} />
+            <StatusCard value={temperature} title={'Fever'} xs={3} />
             <StatusCard value={data.singlePatient.familyMembers} title={'Family Members'} xs={3} />
 
             <Grid item container xs={6} spacing={2}>
@@ -97,14 +91,11 @@ export default function Patient() {
               </Grid>
               <Grid item xs={12} style={{ height: 300, paddingTop: 0, paddingBottom: 0 }}>
                 <div style={{ marginBottom: 20, height: '100%' }}>
-                  <GoogleMapReact
-                    bootstrapURLKeys={{
-                      key: 'AIzaSyCTPeJ6h7Xj84VCrmyJhlmMfIrZIRcmwyc',
-                    }}
-                    defaultCenter={{ lat: 46.4936, lng: 11.3346 }}
-                    defaultZoom={14}
+                  <Map
+                      defaultLat={data !== undefined ? data.singlePatient.homeLat : 0}
+                      defaultLon={data !== undefined ? data.singlePatient.homeLon : 0}
+                      markers={[{id: data.singlePatient.id, lat: data.singlePatient.homeLat, lon: data.singlePatient.homeLon}]}
                   />
-                  <img lat={data.singlePatient.homeLat} lng={data.singlePatient.homeLon} src={Marker} alt={''} />
                 </div>
               </Grid>
             </Grid>
