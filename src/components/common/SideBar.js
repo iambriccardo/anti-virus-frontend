@@ -41,9 +41,9 @@ export default function SideBar(props) {
       <div className={styles.toolbar} />
       <Divider classes={styles.listItem} />
       <List>
-        {menuItems.map((item) => (
+        {menuItems.map((item, index) => (
           <MenuLink
-            activeOnlyWhenExact={true}
+            key={index}
             to={item.link}
             label={item.label}
             icon={item.icon}
@@ -66,7 +66,7 @@ export default function SideBar(props) {
   );
 }
 
-function MenuLink({ to, activeOnlyWhenExact, label, icon, isActive }) {
+function MenuLink({ to, label, icon, isActive }) {
   const styles = useStyles();
 
   const history = useHistory();

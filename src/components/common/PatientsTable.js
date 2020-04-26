@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/react-hooks';
 import { Avatar, Typography } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
@@ -9,15 +8,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import gql from 'graphql-tag';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import useStyles from '../Styles';
 
-
-
-export default function PatientsTable({data, basePath}) {
+export default function PatientsTable({ data, basePath }) {
   const classes = useStyles();
 
   const history = useHistory();

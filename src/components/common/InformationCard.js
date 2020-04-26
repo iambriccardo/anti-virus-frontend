@@ -6,6 +6,7 @@ import Avatar from "@material-ui/core/Avatar";
 
 export default function InformationCard(props) {
   const styles = useStyles();
+  
   return (
     <Grid container direction="row" justify="flex-start" alignItems="center" item xs={3} spacing={2}>
       <Grid item xs={4}>
