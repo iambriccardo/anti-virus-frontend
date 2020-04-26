@@ -29,15 +29,15 @@ const GET_PATIENT_BY_ID = gql`
     }
 `;
 const GET_TEMPERATURE = gql`
-  query symptomsOfPatient($patientID: Int!) {
-    symptomsOfPatient(patientId:1) {
+  query symptomsOfPatient($patientId: Int!) {
+    symptomsOfPatient(patientId: $patientId) {
         bodyTemperature
     }
 }
 `;
 
 export default function Patient() {
-   
+
 
     const infos = [
         {
@@ -55,13 +55,13 @@ export default function Patient() {
     console.log(idInt)
     const{loading,error,data}=useQuery(GET_PATIENT_BY_ID, {
         variables: {
-           patientId: idInt 
+           patientId: idInt
         },
       });
-      
+
     const{loadingTemp,errorTemp,dataTemp}=useQuery(GET_TEMPERATURE, {
         variables: {
-           patientId: idInt 
+           patientId: idInt
         },
     });
 

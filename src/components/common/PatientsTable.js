@@ -23,7 +23,7 @@ export default function PatientsTable({data, basePath}) {
   const history = useHistory();
 
   return (
-    <TableContainer component={Paper}>
+    <Paper variant={"outlined"} elevation={0}>
       <Table className={classes.tabTable} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -52,6 +52,6 @@ export default function PatientsTable({data, basePath}) {
             ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </Paper>
   );
 }
