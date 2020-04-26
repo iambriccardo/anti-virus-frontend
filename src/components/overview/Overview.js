@@ -47,7 +47,7 @@ export default function Overview(props) {
         <div className={styles.rowContainer}>
           <Grid container className={styles.root} direction="row" spacing={3} justify="space-between">
             {boxes.map((box) => (
-              <StatusCard title={box.title} value={box.value} xs={boxes.length} />
+              <StatusCard title={box.title} value={box.value} xs={12 / boxes.length} />
             ))}
           </Grid>
         </div>
