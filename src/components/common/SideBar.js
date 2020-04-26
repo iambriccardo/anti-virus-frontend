@@ -47,14 +47,7 @@ export default function SideBar(props) {
       </List>
       <Divider />
       <List>
-        <Link to={'settings'} style={{ textDecoration: 'none' }}>
-          <ListItem button key="Settings" className={styles.listItem}>
-            <ListItemIcon className={styles.menuIcon}>
-              <SettingsOutlined />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </Link>
+        <MenuLink key={2} to={`${props.path}/settings`} label={"Settings"} icon={<SettingsOutlined />} isActive={pathname === `${props.path}/settings`} />
       </List>
     </Drawer>
   );

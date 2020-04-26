@@ -7,6 +7,7 @@ import Overview from '../overview/Overview';
 import Patient from '../patient/Patient';
 import PatientsList from '../patientsList/PatientsList';
 import useStyles from '../Styles';
+import Settings from "../settings/Settings";
 
 export default function Home() {
   const styles = useStyles();
@@ -27,6 +28,9 @@ export default function Home() {
         </Route>
         <Route path={`${path}/patient/:id`}>
           <Patient />
+        </Route>
+        <Route path={`${path}/settings`}>
+          <Settings />
         </Route>
       </Switch>
     </div>
