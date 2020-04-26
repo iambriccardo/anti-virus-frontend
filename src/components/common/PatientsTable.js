@@ -1,4 +1,5 @@
-import { Typography, Avatar } from '@material-ui/core';
+import { useQuery } from '@apollo/react-hooks';
+import { Avatar, Typography } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -8,53 +9,47 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import gql from 'graphql-tag';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import useStyles from '../Styles';
-import {useHistory} from 'react-router-dom';
 
-export default function PatientsTable(props) {
+
+
+export default function PatientsTable({data, basePath}) {
   const classes = useStyles();
 
   const history = useHistory();
-  console.log(history);
-
-  const rows = [{
-    Name: "Ciao",
-    Date: "Date"
-  }]
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.tabTable} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Date</TableCell>
-            <TableCell align="right">Tag</TableCell>
+            <TableCell>Name and surname</TableCell>
+            <TableCell>Gravity estimation</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.Name} onClick={() => history.push(`${props.basePath}/patient/${1}`)}>
-              <TableCell component="th" scope="row">
-                <Grid container direction="row" justify="flex-start" alignItems="center" spacing={2}>
-                  <Grid item>
-                    <Avatar
-                      src="https://webservices.scientificnet.org/rest/uisdata/api/v1/people/38064/image?w=260&amp;h=260"
-                    />
+          {data !== undefined &&
+            data.map((patient) => (
+              <TableRow key={patient.id} onClick={() => history.push(`${basePath}/patient/${patient.id}`)}>
+                <TableCell component="th" scope="row">
+                  <Grid container direction="row" justify="flex-start" alignItems="center" spacing={2}>
+                    <Grid item>
+                      <Avatar src={patient.imageUrl} />
+                    </Grid>
+                    <Grid item>
+                      <Typography>{`${patient.name} ${patient.surname}`}</Typography>
+                    </Grid>
                   </Grid>
-                  <Grid item>
-                    <Typography>{row.Name}</Typography>
-                  </Grid>
-                </Grid>
-              </TableCell>
-              <TableCell align="right">{row.Date}</TableCell>
-              <TableCell align="right">
-                {' '}
-                <Chip label={row.Tag} color="primary" style={{ backgroundColor: row.Tag }} />{' '}
-              </TableCell>
-            </TableRow>
-          ))}
+                </TableCell>
+                <TableCell>
+                  <Chip label={'N/A'} color="primary" />
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
