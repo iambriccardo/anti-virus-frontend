@@ -21,7 +21,7 @@ export default function Home() {
       <SideBar path={path} />
       <Switch>
         <Route path={`${path}/overview`}>
-          <Overview activeRole={activeRole} />
+          <Overview basePath={path} activeRole={activeRole} />
         </Route>
         <Route path={`${path}/patientsList`}>
           <PatientsList basePath={path} activeRole={activeRole} />
