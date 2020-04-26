@@ -11,20 +11,42 @@ import {Map} from '../common/Map';
 import StatusCard from '../common/StatusCard';
 import TopBar from '../common/TopBar';
 import useStyles from '../Styles';
+import {DOCTOR_ROLE_TYPE} from "../../constants/constants";
 
-
-const GET_PATIENTS = gql`
-  query patientsOfDoctor($doctorId: Int!) {
+const GET_PATIENTS_OF_DOCTOR = gql`
+  query patientsOfDoctor($doctorId: Int) {
     patientsOfDoctor(doctorId: $doctorId) {
       id
-      homeLat
-      homeLon
+      fiscalCode
       name
       surname
+      dateOfBirth
+      familyMembers
+      homeLat
+      homeLon
+      imageUrl
       riskScore
     }
   }
 `;
+
+const GET_PATIENTS_OF_HOSPITAL = gql`
+  query patientsOfHospital($hospitalId: Int) {
+    patientsOfHospital(hospitalId: $hospitalId) {
+      id
+      fiscalCode
+      name
+      surname
+      dateOfBirth
+      familyMembers
+      homeLat
+      homeLon
+      imageUrl
+      riskScore
+    }
+  }
+`;
+
 
 function filterByRisk(data, riskLevel) {
     const mediaTypes = data
@@ -47,30 +69,34 @@ export default function Overview({basePath, activeRole}) {
 
     const id = useSelector((state) => state.activeRole.id);
 
-    const {loading, error, data} = useQuery(GET_PATIENTS, {
+    const isDoctor = activeRole.type === DOCTOR_ROLE_TYPE;
+
+    const {loading, error, data} = useQuery(isDoctor ? GET_PATIENTS_OF_DOCTOR : GET_PATIENTS_OF_HOSPITAL, {
         variables: {
-            doctorId: id,
-        },
+            doctorId: isDoctor ? activeRole.id : undefined,
+            hospitalId: !isDoctor ? activeRole.id : undefined,
+        }
     });
 
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
+    const newData = isDoctor ? data.patientsOfDoctor : data.patientsOfHospital;
 
     const boxes = [
         {
             title: 'Total Patients',
-            value: data.patientsOfDoctor.length,
+            value: newData.length,
             risk: "",
         },
         {
             title: 'Serious Patients',
-            value: filterByRisk(data.patientsOfDoctor, "HIGH") + filterByRisk(data.patientsOfDoctor, "CRITICAL"),
+            value: filterByRisk(newData, "HIGH") + filterByRisk(newData, "CRITICAL"),
             risk: "HIGH",
         },
 
         {
             title: 'Low Risk Patients',
-            value: filterByRisk(data.patientsOfDoctor, "LOW"),
+            value: filterByRisk(newData, "LOW"),
             risk: "LOW"
         },
     ];
@@ -88,9 +114,9 @@ export default function Overview({basePath, activeRole}) {
                 </div>
                 <div style={{marginBottom: 20}} className={styles.mapContainer}>
                     <Map
-                        defaultLat={data !== undefined && data.patientsOfDoctor.length > 0 ? data.patientsOfDoctor[0].homeLat : 0}
-                        defaultLon={data !== undefined && data.patientsOfDoctor.length > 0 ? data.patientsOfDoctor[0].homeLon : 0}
-                        markers={data.patientsOfDoctor.map((patient) => ({
+                        defaultLat={newData !== undefined && newData.length > 0 ? newData[0].homeLat : 0}
+                        defaultLon={newData !== undefined && newData.length > 0 ? newData[0].homeLon : 0}
+                        markers={newData.map((patient) => ({
                             id: patient.id,
                             lat: patient.homeLat,
                             lon: patient.homeLon,

@@ -11,6 +11,8 @@ import React from 'react';
 import {useHistory} from 'react-router-dom';
 import useStyles from '../Styles';
 import Button from "@material-ui/core/Button";
+import {DOCTOR_ROLE_TYPE} from "../../constants/constants";
+import {useSelector} from "react-redux";
 
 function riskEvaluation(risk) {
     let color = '#3f51b5';
@@ -36,7 +38,8 @@ function riskEvaluation(risk) {
 
 export default function PatientsTable({data, basePath}) {
     const classes = useStyles();
-
+    const activeRole = useSelector((state) => state.activeRole);
+    const isDoctor = activeRole.type === DOCTOR_ROLE_TYPE;
     const history = useHistory();
 
     return (
@@ -46,7 +49,7 @@ export default function PatientsTable({data, basePath}) {
                     <TableRow>
                         <TableCell>Name and surname</TableCell>
                         <TableCell>Gravity estimation</TableCell>
-                        <TableCell>Emergency</TableCell>
+                        {isDoctor && <TableCell>Emergency</TableCell> }
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -82,12 +85,14 @@ export default function PatientsTable({data, basePath}) {
                                 />
 
                             </TableCell>
+                            {isDoctor &&
                             <TableCell>
                                 <Button variant="outlined" color="primary"
                                         onClick={(event => alert(patient.name + " " + patient.surname + " will be sent to Hospital!"))}>
                                     Send to Hospital
                                 </Button>
                             </TableCell>
+                            }
                         </TableRow>
                     ))}
                 </TableBody>
