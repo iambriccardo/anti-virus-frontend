@@ -16,7 +16,7 @@ export default function TopBar(props) {
         >
             <Toolbar>
                 {props.icon !== undefined && (
-                    <IconButton onClick={(event => history.goBack())}>
+                    <IconButton onClick={() => history.goBack()}>
                         <Typography className={styles.topBarTitleIcon}>
                             {props.icon}
                         </Typography>

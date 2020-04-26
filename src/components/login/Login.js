@@ -47,14 +47,12 @@ function Login() {
     onCompleted: (data) => {
       dispatch(setActiveRole(data.singleDoctor.id, DOCTOR_ROLE_TYPE));
       history.push(`/${DOCTOR_ROLE_TYPE}/overview`);
-      console.log('doctor logging');
     },
   });
   const [getHospitalByName] = useLazyQuery(GET_HOSPITAL_BY_NAME, {
     onCompleted: (data) => {
       dispatch(setActiveRole(data.singleHospital.id, HOSPITAL_ROLE_TYPE));
       history.push(`/${HOSPITAL_ROLE_TYPE}/overview`);
-      console.log('hospital logging');
     },
   });
 

@@ -42,13 +42,7 @@ export default function SideBar(props) {
       <Divider classes={styles.listItem} />
       <List>
         {menuItems.map((item, index) => (
-          <MenuLink
-            key={index}
-            to={item.link}
-            label={item.label}
-            icon={item.icon}
-            isActive={pathname === item.link}
-          />
+          <MenuLink key={index} to={item.link} label={item.label} icon={item.icon} isActive={pathname === item.link} />
         ))}
       </List>
       <Divider />

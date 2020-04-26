@@ -12,7 +12,7 @@ function App() {
       <Route exact path="/login">
         <Login />
       </Route>
-      { activeRole !== undefined && (
+      {activeRole !== undefined && (
         <Route path={`/${activeRole.type}`}>
           <Home />
         </Route>

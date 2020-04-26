@@ -43,7 +43,7 @@ const GET_PATIENTS = gql`
   }
 `;
 
-export default function Overview({basePath, activeRole}) {
+export default function Overview({ basePath, activeRole }) {
   const styles = useStyles();
 
   const history = useHistory();
@@ -75,7 +75,11 @@ export default function Overview({basePath, activeRole}) {
           <Map
             defaultLat={data !== undefined && data.patientsOfDoctor.length > 0 ? data.patientsOfDoctor[0].homeLat : 0}
             defaultLon={data !== undefined && data.patientsOfDoctor.length > 0 ? data.patientsOfDoctor[0].homeLon : 0}
-            markers={data.patientsOfDoctor.map((patient) => ({ id: patient.id, lat: patient.homeLat, lon: patient.homeLon }))}
+            markers={data.patientsOfDoctor.map((patient) => ({
+              id: patient.id,
+              lat: patient.homeLat,
+              lon: patient.homeLon,
+            }))}
             onMarkerClick={(id, lat, lon) => history.push(`${basePath}/patient/${id}`)}
           />
         </div>

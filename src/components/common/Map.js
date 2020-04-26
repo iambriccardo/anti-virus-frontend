@@ -19,7 +19,9 @@ export const Map = compose(
         <Marker
           key={index}
           position={{ lat: marker.lat, lng: marker.lon }}
-          onClick={() => props.onMarkerClick(marker.id, marker.lat, marker.lon)}
+          onClick={() => {
+            if (props.onMarkerClick) props.onMarkerClick(marker.id, marker.lat, marker.lon);
+          }}
         />
       ))}
   </GoogleMap>

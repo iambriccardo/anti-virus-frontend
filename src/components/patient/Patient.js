@@ -8,13 +8,13 @@ import gql from 'graphql-tag';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import InformationCard from '../common/InformationCard';
+import { Map } from '../common/Map';
 import StatusCard from '../common/StatusCard';
 import TopBar from '../common/TopBar';
 import useStyles from '../Styles';
-import {Map} from "../common/Map";
 
 const GET_PATIENT_BY_ID = gql`
-  query ($patientId: Int!) {
+  query($patientId: Int!) {
     singlePatient(patientId: $patientId) {
       fiscalCode
       name
@@ -32,7 +32,6 @@ const GET_PATIENT_BY_ID = gql`
   }
 `;
 
-
 export default function Patient() {
   const classes = useStyles();
 
@@ -47,8 +46,8 @@ export default function Patient() {
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
 
-  let temperature = "nAn";
-  if(data.symptomsOfPatient[0] !== undefined){
+  let temperature = 'N/A';
+  if (data.symptomsOfPatient[0] !== undefined) {
     temperature = data.symptomsOfPatient[0].bodyTemperature;
   }
 
@@ -68,7 +67,12 @@ export default function Patient() {
               src={data.singlePatient.imageUrl}
             />
 
-            <StatusCard risk={data.singlePatient.riskScore} value={data.singlePatient.riskScore !== null ? data.singlePatient.riskScore : "nAn"} title={'Estimated Risk'} xs={3} />
+            <StatusCard
+              risk={data.singlePatient.riskScore}
+              value={data.singlePatient.riskScore !== null ? data.singlePatient.riskScore : 'N/A'}
+              title={'Estimated Risk'}
+              xs={3}
+            />
             <StatusCard value={temperature} title={'Fever'} xs={3} />
             <StatusCard value={data.singlePatient.familyMembers} title={'Family Members'} xs={3} />
 
@@ -92,9 +96,11 @@ export default function Patient() {
               <Grid item xs={12} style={{ height: 300, paddingTop: 0, paddingBottom: 0 }}>
                 <div style={{ marginBottom: 20, height: '100%' }}>
                   <Map
-                      defaultLat={data !== undefined ? data.singlePatient.homeLat : 0}
-                      defaultLon={data !== undefined ? data.singlePatient.homeLon : 0}
-                      markers={[{id: data.singlePatient.id, lat: data.singlePatient.homeLat, lon: data.singlePatient.homeLon}]}
+                    defaultLat={data !== undefined ? data.singlePatient.homeLat : 0}
+                    defaultLon={data !== undefined ? data.singlePatient.homeLon : 0}
+                    markers={[
+                      { id: data.singlePatient.id, lat: data.singlePatient.homeLat, lon: data.singlePatient.homeLon },
+                    ]}
                   />
                 </div>
               </Grid>

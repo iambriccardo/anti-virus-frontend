@@ -24,7 +24,7 @@ export default makeStyles((theme) => ({
   },
   topBarTitleIcon: {
     color: 'black',
-    lineHeight: 1
+    lineHeight: 1,
   },
   mapContainer: {
     height: '50vh',
@@ -68,35 +68,35 @@ export default makeStyles((theme) => ({
     fontSize: 40,
     fontWeight: 'normal',
   },
-  statusCardValueWhite:{
+  statusCardValueWhite: {
     fontSize: 40,
     fontWeight: 'normal',
     color: 'white',
   },
-  statusCardLow:{
+  statusCardLow: {
     height: 110,
-    background: "#29CC97",
+    background: '#29CC97',
   },
-  statusCardMedium:{
+  statusCardMedium: {
     height: 110,
-    background: "#FF8E25",
+    background: '#FF8E25',
   },
-  statusCardHigh:{
+  statusCardHigh: {
     height: 110,
-    background: "#F12B2C",
+    background: '#F12B2C',
   },
-  statusCardCritical:{
+  statusCardCritical: {
     height: 110,
-    background: "#6d0202",
+    background: '#6d0202',
   },
 
   informationCardName: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 20,
-    marginBottom: 5
+    marginBottom: 5,
   },
-  informationCardDetail:{
-    fontSize: 15
+  informationCardDetail: {
+    fontSize: 15,
   },
 
   // Login:
@@ -111,8 +111,6 @@ export default makeStyles((theme) => ({
     fontSize: 25,
     marinBottom: 25,
   },
-
-
 
   // Patient:
   patientGrid: {

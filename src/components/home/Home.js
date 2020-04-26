@@ -4,9 +4,9 @@ import { Switch, useRouteMatch } from 'react-router';
 import { Route } from 'react-router-dom';
 import SideBar from '../common/SideBar';
 import Overview from '../overview/Overview';
+import Patient from '../patient/Patient';
 import PatientsList from '../patientsList/PatientsList';
 import useStyles from '../Styles';
-import Patient from '../patient/Patient';
 
 export default function Home() {
   const styles = useStyles();
@@ -26,7 +26,7 @@ export default function Home() {
           <PatientsList basePath={path} activeRole={activeRole} />
         </Route>
         <Route path={`${path}/patient/:id`}>
-            <Patient />
+          <Patient />
         </Route>
       </Switch>
     </div>
