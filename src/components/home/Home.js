@@ -14,7 +14,6 @@ export default function Home() {
   const activeRole = useSelector((state) => state.activeRole);
 
   const { path } = useRouteMatch();
-  console.log(path);
 
   return (
     <div className={styles.root}>

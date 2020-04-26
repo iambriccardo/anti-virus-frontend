@@ -29,11 +29,29 @@ const GET_PATIENT_BY_ID = gql`
     }
 `;
 const GET_TEMPERATURE = gql`
-  query symptomsOfPatient($patientId: Int!) {
+ query symptomsOfPatient($patientId: Int!) {
     symptomsOfPatient(patientId: $patientId) {
-        bodyTemperature
+      bodyTemperature
     }
-}
+  }
+`;
+
+const COMBINED_QUERY = gql` 
+    query($patientId: Int!){
+        singlePatient(patientId: $patientId) {
+            fiscalCode
+            name
+            surname
+            dateOfBirth
+            familyMembers
+            homeLat
+            homeLon
+            imageUrl
+        }
+        symptomsOfPatient(patientId: $patientId) {
+            bodyTemperature
+        }
+    }
 `;
 
 export default function Patient() {
@@ -51,17 +69,17 @@ export default function Patient() {
     const classes = useStyles();
 
     const {id} = useParams();
-    const idInt= parseInt(id);
-    console.log(idInt)
-    const{loading,error,data}=useQuery(GET_PATIENT_BY_ID, {
-        variables: {
-           patientId: idInt
-        },
-      });
+    const idInt = parseInt(id);
 
-    const{loadingTemp,errorTemp,dataTemp}=useQuery(GET_TEMPERATURE, {
+    const {loading, error, data} = useQuery(COMBINED_QUERY, {
         variables: {
-           patientId: idInt
+            patientId: idInt
+        },
+    });
+
+    const {loadingTemp, errorTemp, dataTemp} = useQuery(GET_TEMPERATURE, {
+        variables: {
+            patientId: idInt
         },
     });
 
@@ -69,7 +87,10 @@ export default function Patient() {
     if (error) return `Error! ${error.message}`;
     if (loadingTemp) return 'Loading...';
     if (errorTemp) return `Error! ${error.message}`;
-
+    let temperature = "nAn";
+    if(data.symptomsOfPatient[0] !== undefined){
+        temperature = data.symptomsOfPatient[0].bodyTemperature;
+    }
     return (
         <div className={classes.root}>
             <TopBar title="Patient Information" icon={<ArrowBack/>}/>
@@ -79,12 +100,14 @@ export default function Patient() {
                 <div>
                     <Grid container spacing={3}>
                         {infos.map((box) => (
-                            <InformationCard name={data.singlePatient.name+" "+data.singlePatient.surname} birthDate={data.singlePatient.dateOfBirth}
-                             gender={" "} code={data.singlePatient.fiscalCode} src={data.singlePatient.imageUrl}/>
+                            <InformationCard name={data.singlePatient.name + " " + data.singlePatient.surname}
+                                             birthDate={data.singlePatient.dateOfBirth}
+                                             gender={" "} code={data.singlePatient.fiscalCode}
+                                             src={data.singlePatient.imageUrl}/>
                         ))}
 
                         <StatusCard value={"Low"} title={"Estimated Risk"} xs={3}/>
-                        <StatusCard value={"37"} title={"Fever"} xs={3}/>
+                        <StatusCard value={temperature} title={"Fever"} xs={3}/>
                         <StatusCard value={data.singlePatient.familyMembers} title={"Family Members"} xs={3}/>
 
                         <Grid item container xs={6} spacing={2}>
@@ -102,15 +125,19 @@ export default function Patient() {
                                 <Typography className={classes.topBarTitle} variant="h6" elevation={0}>Home
                                     Location</Typography>
                             </Grid>
-                            <Grid item xs={12} style={{height: 300,paddingTop:0, paddingBottom:0}}>
+                            <Grid item xs={12} style={{height: 300, paddingTop: 0, paddingBottom: 0}}>
                                 <div style={{marginBottom: 20, height: "100%"}}>
                                     <GoogleMapReact
                                         bootstrapURLKeys={{
                                             key: 'AIzaSyCTPeJ6h7Xj84VCrmyJhlmMfIrZIRcmwyc',
                                         }}
-                                        defaultCenter={{lat: data.singlePatient.homeLat, lng: data.singlePatient.homeLon}}
+                                        defaultCenter={{
+                                            lat: data.singlePatient.homeLat,
+                                            lng: data.singlePatient.homeLon
+                                        }}
                                         defaultZoom={12}>
-                                    <img lat={data.singlePatient.homeLat} lng={data.singlePatient.homeLon} style={{width: 15, height:15}} src={Circle} alt={''} />
+                                        <img lat={data.singlePatient.homeLat} lng={data.singlePatient.homeLon}
+                                             style={{width: 15, height: 15}} src={Circle} alt={''}/>
                                     </GoogleMapReact>
                                 </div>
                             </Grid>
