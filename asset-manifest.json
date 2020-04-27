@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/anti-virus-frontend/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/anti-virus-frontend/static/js/main.9c7fa60f.chunk.js",
+    "main.js.map": "/anti-virus-frontend/static/js/main.9c7fa60f.chunk.js.map",
+    "runtime-main.js": "/anti-virus-frontend/static/js/runtime-main.5575fc80.js",
+    "runtime-main.js.map": "/anti-virus-frontend/static/js/runtime-main.5575fc80.js.map",
+    "static/js/2.2012e214.chunk.js": "/anti-virus-frontend/static/js/2.2012e214.chunk.js",
+    "static/js/2.2012e214.chunk.js.map": "/anti-virus-frontend/static/js/2.2012e214.chunk.js.map",
+    "index.html": "/anti-virus-frontend/index.html",
+    "precache-manifest.048b79a152f4b0ede826676a2f1983f6.js": "/anti-virus-frontend/precache-manifest.048b79a152f4b0ede826676a2f1983f6.js",
+    "service-worker.js": "/anti-virus-frontend/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/anti-virus-frontend/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.2012e214.chunk.js.LICENSE.txt": "/anti-virus-frontend/static/js/2.2012e214.chunk.js.LICENSE.txt",
+    "static/media/logo.png": "/anti-virus-frontend/static/media/logo.77e2e467.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5575fc80.js",
+    "static/js/2.2012e214.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.9c7fa60f.chunk.js"
+  ]
+}
