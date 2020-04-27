@@ -5,7 +5,10 @@ This project was developed for the #EUvsVirus Hackathon organized by the Europea
 
 To learn more about our post go on [devpost](https://devpost.com/software/antivirus).  
 
-You can view a live demo by clicking [here](https://riccardobusetti.github.io/anti-virus-frontend/). As test credentials ``Fredric`` with no password and ``doctor`` selected.
+You can view a **live demo** by clicking [here](https://riccardobusetti.github.io/anti-virus-frontend/).
+The test credentials for the demo are:
+* **Doctor** -> ``Fredric`` with no password.
+* **Hospital** -> ``PRESIDIO OSPEDALIERO DI CAVALESE`` with no password.
 
 ## Technologies involved
 
